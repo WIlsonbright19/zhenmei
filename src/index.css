@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --white: #fefcf8;
+    --subtle-grey: #f5f3f0;
+    --light-grey: #bbb9b5;
+    --grey: #3a4140;
+    --dark-grey: #2a2d31;
+    --black: #081010;
+    --accent: #1f453f;
+    --light-accent: #39736a;
+    --subtle-accent: #c6f0dc;
+    --font-heading: 'General Sans', 'Plus Jakarta Sans', Arial, sans-serif;
+    --font-body: 'General Sans', 'Plus Jakarta Sans', Arial, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    background-color: var(--white);
+    color: var(--grey);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--black);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+}
+
+/* Homura Button with double rolling text animation */
+.homura-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.75rem 2rem;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.homura-btn-primary {
+  background-color: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+}
+
+.homura-btn-primary:hover {
+  background-color: var(--grey);
+  border-color: var(--grey);
+  color: var(--white);
+}
+
+.homura-btn-secondary {
+  background-color: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.homura-btn-secondary:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.homura-btn-white {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--white);
+}
+
+.homura-btn-white:hover {
+  background-color: var(--grey);
+  border-color: var(--grey);
+  color: var(--white);
+}
+
+.homura-btn-secondary-white {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid var(--white);
+}
+
+.homura-btn-secondary-white:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+/* The rolling text inner effect */
+.btn-text-roll {
+  display: flex;
+  flex-direction: column;
+  height: 1.5rem;
+  overflow: hidden;
+}
+
+.btn-text-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.homura-btn:hover .btn-text-track {
+  transform: translateY(-50%);
+}
+
+.btn-text-slot {
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Container conforming to Homura 1800px max width with 4rem padding */
+.homura-container {
+  width: 100%;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .homura-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .homura-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Section padding matching Homura 6rem/8rem */
+.homura-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  overflow: clip;
+}
+
+@media (min-width: 768px) {
+  .homura-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.homura-section-hero {
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Marquee infinite vertical animation for desktop */
+@keyframes verticalScrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: verticalScrollUp 24s linear infinite;
+}
+
+.animate-marquee-vertical:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  .btn-text-track {
+    transform: none !important;
+  }
+  .animate-marquee-vertical {
+    animation: none !important;
+  }
+}
